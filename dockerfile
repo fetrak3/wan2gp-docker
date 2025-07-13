@@ -5,7 +5,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 
 # Install Python 3.10, git, and venv tools
 RUN apt-get update && \
-    apt-get install -y git python3.10 python3.10-venv python3-pip curl && \
+    apt-get install -y git python3.10 python3-pip curl && \
     ln -sf python3.10 /usr/bin/python && \
     ln -sf pip3 /usr/bin/pip && \
     apt-get clean
@@ -19,8 +19,6 @@ RUN git clone https://github.com/deepbeepmeep/Wan2GP.git
 # Default command: set up venv + pip installs at runtime
 CMD bash -c '\
     cd Wan2GP && \
-    python -m venv wan2gp && \
-    source wan2gp/bin/activate && \
     pip install --upgrade pip wheel && \
     pip install torch==2.6.0 torchvision torchaudio --index-url https://download.pytorch.org/whl/test/cu124 && \
     pip install -r requirements.txt && \
