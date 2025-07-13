@@ -27,14 +27,13 @@ RUN git clone https://github.com/deepbeepmeep/Wan2GP.git /workspace/Wan2GP
 WORKDIR /workspace/Wan2GP
 
 # Create venv and activate it, install dependencies + JupyterLab
-RUN python -m venv wan2gp && \
+# Set up virtualenv, install dependencies
+RUN python3 -m venv wan2gp && \
     . wan2gp/bin/activate && \
-    pip install --upgrade pip && \
-    pip install wheel && \
+    pip install --upgrade pip wheel && \
     pip install torch==2.6.0 torchvision torchaudio --index-url https://download.pytorch.org/whl/test/cu124 && \
     pip install -r requirements.txt && \
-    pip install flash-attn==2.7.2.post1 --no-build-isolation --no-cache-dir && \
-    pip install jupyterlab
+    pip install flash-attn==2.7.2.post1
 
 # Expose Gradio and JupyterLab ports
 EXPOSE 7860
@@ -43,4 +42,4 @@ EXPOSE 8888
 # Default command: launch both Gradio and JupyterLab
 CMD . wan2gp/bin/activate && \
     jupyter lab --ip=0.0.0.0 --port=8888 --no-browser --NotebookApp.token='' --NotebookApp.password='' & \
-    python wgp.py --i2v --profile 3 --attention flash --listen --server_port 7860
+    python wgp.py --i2v --profile 3 --attention flash --listen --server-port 7860
