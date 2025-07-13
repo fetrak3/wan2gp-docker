@@ -12,7 +12,9 @@ RUN apt-get update && \
 WORKDIR /workspace
 
 CMD bash -c '\
-    git clone https://github.com/deepbeepmeep/Wan2GP.git && \
+    if [ ! -d "Wan2GP" ]; then \
+        git clone https://github.com/deepbeepmeep/Wan2GP.git; \
+    fi && \
     cd Wan2GP && \
     pip install --upgrade pip wheel && \
     pip install torch==2.6.0 torchvision torchaudio --index-url https://download.pytorch.org/whl/test/cu124 && \
