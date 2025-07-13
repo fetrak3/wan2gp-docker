@@ -30,6 +30,7 @@ WORKDIR /workspace/Wan2GP
 RUN python -m venv wan2gp && \
     . wan2gp/bin/activate && \
     pip install --upgrade pip && \
+    pip install wheel && \
     pip install torch==2.6.0 torchvision torchaudio --index-url https://download.pytorch.org/whl/test/cu124 && \
     pip install -r requirements.txt && \
     pip install flash-attn==2.7.2.post1 --no-build-isolation --no-cache-dir && \
