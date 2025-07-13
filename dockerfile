@@ -18,7 +18,7 @@ RUN git clone https://github.com/deepbeepmeep/Wan2GP.git
 
 # Default command: set up venv + pip installs at runtime
 CMD bash -c '\
-    cd /workspace/Wan2GP && \
+    cd Wan2GP && \
     python -m venv wan2gp && \
     source wan2gp/bin/activate && \
     pip install --upgrade pip wheel && \
